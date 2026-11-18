@@ -1,0 +1,4 @@
+dispatch_id,resource_id,activity,partner,quantity,at
+DS1,RC2,A1,PART1,30,2026-10-12T08:00:00+08:00
+DS2,G1,A1,PART1,20,2026-10-12T08:00:00+08:00
+DS3,RC3,A2,PART2,6,2026-10-13T08:00:00+08:00

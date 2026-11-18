@@ -1,0 +1,4 @@
+resource_id,pledge_id,kind,quantity,unit,acquisition_value,declared_value,presentation_value,pledge_value_units,purpose,at
+RC1,PL1,cash,500,CNY,500,500,500,500,training,2026-10-06T08:00:00+08:00
+RC2,PL1,goods,50,piece,400,600,500,500,training,2026-10-07T08:00:00+08:00
+RC3,PL2,voucher,10,ticket,500,500,500,500,outreach,2026-10-08T08:00:00+08:00

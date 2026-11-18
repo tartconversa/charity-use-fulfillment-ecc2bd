@@ -1,0 +1,7 @@
+evidence_id,dispatch_id,kind,quantity,at
+E1,DS1,custody,30,2026-10-12T08:00:00+08:00
+E2,DS1,beneficiary_receipt,20,2026-10-14T08:00:00+08:00
+E3,DS1,unopened_return,5,2026-10-15T08:00:00+08:00
+E4,DS2,custody,20,2026-10-12T08:00:00+08:00
+E5,DS3,voucher_consumed,4,2026-10-16T08:00:00+08:00
+E6,DS3,voucher_void,1,2026-10-17T08:00:00+08:00

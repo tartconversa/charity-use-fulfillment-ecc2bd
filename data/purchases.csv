@@ -1,0 +1,2 @@
+purchase_id,source_cash,amount,output_resource,quantity,unit,purpose,at
+PU1,RC1,300,G1,30,piece,training,2026-10-10T08:00:00+08:00

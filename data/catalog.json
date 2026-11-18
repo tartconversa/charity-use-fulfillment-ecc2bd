@@ -1,0 +1,489 @@
+{
+  "title": "公益援助的捐赠与用途履行仓",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "pledges",
+      "description": "捐赠承诺。",
+      "columns": [
+        {
+          "name": "pledge_id",
+          "type": "string",
+          "description": "承诺",
+          "nullable": true
+        },
+        {
+          "name": "donor",
+          "type": "string",
+          "description": "捐赠方",
+          "nullable": true
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "description": "约定价值",
+          "nullable": true
+        },
+        {
+          "name": "purpose",
+          "type": "string",
+          "description": "限定用途",
+          "nullable": true
+        },
+        {
+          "name": "due",
+          "type": "date",
+          "description": "期限",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "pledge_id"
+      ],
+      "references": [],
+      "path": "data/pledges.csv",
+      "row_count": 2,
+      "sha256": "ec80fcb97b5a313c925e3f5d4884e346d78eb510949b0c93c144a49458df69bc"
+    },
+    {
+      "name": "pledge_changes",
+      "description": "现金改实物的同承诺变更。",
+      "columns": [
+        {
+          "name": "change_id",
+          "type": "string",
+          "description": "改",
+          "nullable": true
+        },
+        {
+          "name": "pledge_id",
+          "type": "string",
+          "description": "承诺",
+          "nullable": true
+        },
+        {
+          "name": "cash_amount",
+          "type": "number",
+          "description": "保留现金额",
+          "nullable": true
+        },
+        {
+          "name": "kind_value",
+          "type": "number",
+          "description": "改实物认可额",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "生效",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "change_id"
+      ],
+      "references": [
+        {
+          "column": "pledge_id",
+          "target_table": "pledges",
+          "target_column": "pledge_id"
+        }
+      ],
+      "path": "data/pledge_changes.csv",
+      "row_count": 1,
+      "sha256": "da549fb856a1196f561504af2dd1fb89d406df15f54248faf93bb0d41797ad50"
+    },
+    {
+      "name": "receipts",
+      "description": "真实资源接收。",
+      "columns": [
+        {
+          "name": "resource_id",
+          "type": "string",
+          "description": "资源",
+          "nullable": true
+        },
+        {
+          "name": "pledge_id",
+          "type": "string",
+          "description": "承诺",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "cash或goods或voucher",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "description": "量",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "description": "单位",
+          "nullable": true
+        },
+        {
+          "name": "acquisition_value",
+          "type": "number",
+          "description": "取得价",
+          "nullable": true
+        },
+        {
+          "name": "declared_value",
+          "type": "number",
+          "description": "声明价",
+          "nullable": true
+        },
+        {
+          "name": "presentation_value",
+          "type": "number",
+          "description": "展示价",
+          "nullable": true
+        },
+        {
+          "name": "pledge_value_units",
+          "type": "number",
+          "description": "认可兑现额",
+          "nullable": true
+        },
+        {
+          "name": "purpose",
+          "type": "string",
+          "description": "用途",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "收到",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "resource_id"
+      ],
+      "references": [
+        {
+          "column": "pledge_id",
+          "target_table": "pledges",
+          "target_column": "pledge_id"
+        }
+      ],
+      "path": "data/receipts.csv",
+      "row_count": 3,
+      "sha256": "14bab6c61bf101655e0fc2e4d063cdcf969a4b9ae47a5a76895a0c15065de786"
+    },
+    {
+      "name": "purchases",
+      "description": "现金转实物；source_cash扣现金，output_resource不新增捐赠。",
+      "columns": [
+        {
+          "name": "purchase_id",
+          "type": "string",
+          "description": "采购",
+          "nullable": true
+        },
+        {
+          "name": "source_cash",
+          "type": "string",
+          "description": "原现金资源",
+          "nullable": true
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "description": "花费元",
+          "nullable": true
+        },
+        {
+          "name": "output_resource",
+          "type": "string",
+          "description": "新资源",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "description": "物量",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "description": "单位",
+          "nullable": true
+        },
+        {
+          "name": "purpose",
+          "type": "string",
+          "description": "用途",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "发生",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "purchase_id"
+      ],
+      "references": [
+        {
+          "column": "source_cash",
+          "target_table": "receipts",
+          "target_column": "resource_id"
+        }
+      ],
+      "path": "data/purchases.csv",
+      "row_count": 1,
+      "sha256": "017db15fa2420bca7c43bfa2de13d0d85cbbd60b55dabce094c05205121641c2"
+    },
+    {
+      "name": "dispatches",
+      "description": "发出至合作方代管。",
+      "columns": [
+        {
+          "name": "dispatch_id",
+          "type": "string",
+          "description": "发",
+          "nullable": true
+        },
+        {
+          "name": "resource_id",
+          "type": "string",
+          "description": "资源",
+          "nullable": true
+        },
+        {
+          "name": "activity",
+          "type": "string",
+          "description": "活动",
+          "nullable": true
+        },
+        {
+          "name": "partner",
+          "type": "string",
+          "description": "合作方",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "description": "量",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "时点",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "dispatch_id"
+      ],
+      "references": [],
+      "path": "data/dispatches.csv",
+      "row_count": 3,
+      "sha256": "fadc1873217783b5b64b398da4f820204dd4692600a46bd94d4984bdb55d2942"
+    },
+    {
+      "name": "delivery_evidence",
+      "description": "终交、代管及退回分别解释。",
+      "columns": [
+        {
+          "name": "evidence_id",
+          "type": "string",
+          "description": "凭",
+          "nullable": true
+        },
+        {
+          "name": "dispatch_id",
+          "type": "string",
+          "description": "发出",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "custody或beneficiary_receipt或unopened_return或voucher_consumed或voucher_void",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "description": "量",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "时点",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "evidence_id"
+      ],
+      "references": [
+        {
+          "column": "dispatch_id",
+          "target_table": "dispatches",
+          "target_column": "dispatch_id"
+        }
+      ],
+      "path": "data/delivery_evidence.csv",
+      "row_count": 6,
+      "sha256": "5731b458ac3ba2c8c0ef80cae3483e561095208e105e93178428faa76a166a73"
+    },
+    {
+      "name": "partner_claims",
+      "description": "共同报告主张，超额待核。",
+      "columns": [
+        {
+          "name": "claim_id",
+          "type": "string",
+          "description": "主张",
+          "nullable": true
+        },
+        {
+          "name": "resource_id",
+          "type": "string",
+          "description": "资源",
+          "nullable": true
+        },
+        {
+          "name": "activity",
+          "type": "string",
+          "description": "活动",
+          "nullable": true
+        },
+        {
+          "name": "partner",
+          "type": "string",
+          "description": "方",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "description": "主张量",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "references": [],
+      "path": "data/partner_claims.csv",
+      "row_count": 2,
+      "sha256": "d1f531e5c0e35e710c641944bf124ed3a8bb64e873fab0b3ec6932f8b85c18d9"
+    },
+    {
+      "name": "expenses",
+      "description": "附带支出不冒充物量。",
+      "columns": [
+        {
+          "name": "expense_id",
+          "type": "string",
+          "description": "支出",
+          "nullable": true
+        },
+        {
+          "name": "source_cash",
+          "type": "string",
+          "description": "现金资源",
+          "nullable": true
+        },
+        {
+          "name": "purpose",
+          "type": "string",
+          "description": "用途",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "类型",
+          "nullable": true
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "description": "元",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "时点",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "expense_id"
+      ],
+      "references": [
+        {
+          "column": "source_cash",
+          "target_table": "receipts",
+          "target_column": "resource_id"
+        }
+      ],
+      "path": "data/expenses.csv",
+      "row_count": 1,
+      "sha256": "a2c2be20a0cd0a4ba53f5c6e1a187358f74e493daadbe5c146c9ec3d3979edf4"
+    },
+    {
+      "name": "later_purpose_changes",
+      "description": "后续用途修订只在明确范围生效，已用不抹除。",
+      "columns": [
+        {
+          "name": "change_id",
+          "type": "string",
+          "description": "改",
+          "nullable": true
+        },
+        {
+          "name": "resource_id",
+          "type": "string",
+          "description": "资源",
+          "nullable": true
+        },
+        {
+          "name": "new_purpose",
+          "type": "string",
+          "description": "用途",
+          "nullable": true
+        },
+        {
+          "name": "effective",
+          "type": "datetime",
+          "description": "生效",
+          "nullable": true
+        },
+        {
+          "name": "applies_to_existing",
+          "type": "boolean",
+          "description": "及既有资源",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "change_id"
+      ],
+      "references": [],
+      "path": "data/later_purpose_changes.csv",
+      "row_count": 1,
+      "sha256": "058536130a3a23e5daebfb78919ebacaa107f480ea5a4f669b67a7dc2d358a93"
+    }
+  ]
+}

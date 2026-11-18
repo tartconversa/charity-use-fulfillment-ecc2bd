@@ -1,0 +1,2 @@
+expense_id,source_cash,purpose,kind,amount,at
+EX1,RC1,training,freight,50,2026-10-12T08:00:00+08:00
